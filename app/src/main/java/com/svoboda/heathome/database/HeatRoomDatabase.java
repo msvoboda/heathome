@@ -8,16 +8,19 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
+import com.svoboda.heathome.dao.HeatLogDao;
 import com.svoboda.heathome.dao.WordDao;
 import com.svoboda.heathome.dao.YearSummaryDao;
+import com.svoboda.heathome.entity.HeatLog;
 import com.svoboda.heathome.entity.Word;
 import com.svoboda.heathome.entity.YearSummary;
 
-@Database(entities = {Word.class, YearSummary.class}, version = 1)
+@Database(entities = {Word.class, YearSummary.class, HeatLog.class}, version = 1)
 public abstract class HeatRoomDatabase extends RoomDatabase {
 
     public abstract WordDao wordDao();
     public abstract YearSummaryDao yearDao();
+    public abstract HeatLogDao heatLogDao();
 
     private static HeatRoomDatabase INSTANCE;
 
@@ -50,11 +53,13 @@ public abstract class HeatRoomDatabase extends RoomDatabase {
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final WordDao mDao;
+        private final HeatLogDao heatLogDao;
         private final YearSummaryDao yearSummaryDao;
 
         PopulateDbAsync(HeatRoomDatabase db) {
             mDao = db.wordDao();
             yearSummaryDao = db.yearDao();
+            heatLogDao = db.heatLogDao();
         }
 
 
@@ -84,6 +89,7 @@ public abstract class HeatRoomDatabase extends RoomDatabase {
 
             yearSummary = new YearSummary(2017,35.0F,0.0F,0.0F);
             yearSummaryDao.insert(yearSummary);
+
             return null;
         }
     }

@@ -7,11 +7,17 @@
     style="@style/word_title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:orientation="horizontal">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_marginStart="4dp" android:src="@drawable/fire" />
     <TextView
         android:id="@+id/textHeat"
         style="@style/heat_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/holo_green_dark" />
+</LinearLayout>
 </LinearLayout>
